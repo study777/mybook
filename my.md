@@ -130,7 +130,7 @@ On branch master
 
 
 
-Git  命令1
+7 Git  命令1
 
 工作区    workspace
  
@@ -277,3 +277,4 @@ git  show  hashcode
 
 
 
+8 Git  命令2
