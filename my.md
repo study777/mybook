@@ -330,7 +330,24 @@ git pull remote branch
  
  
  
+github  点击加号  新建一个仓库  demo-test
+
+将本地文件夹  demo  重命名为 demo-test
+
+按照 github 提示 在本地添加远程仓库
+
+git remote add origin https://github.com/study777/demo-test.git
+
+查看远程仓库
+
+git remote -v
  
+ 
+将本地的master 分支推送到远程仓库  origin  
+
+git push origin master
+
+
  
  
  
