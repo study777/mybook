@@ -278,3 +278,64 @@ git  show  hashcode
 
 
 8 Git  命令2
+
+
+Remote 远程仓库
+workspace  工作区
+index/stage  暂存区
+repository  仓库区/本地仓库
+
+
+对于remote
+
+remote    pull >   workspace
+
+remote  fetch/clone  >   repository
+
+repository  push  >   remote
+
+对于 repository
+repository  checkout > workspace
+index  commit  >  repository
+remote  fetch/clone  >   repository
+repository  push  >   remote
+
+
+
+对于 index/stage
+
+index  commit >   repository
+workspace add  > index
+
+对于 workspace
+workspace add  > index
+repository  checkout > workspace
+remote    pull >   workspace
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
