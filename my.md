@@ -267,3 +267,13 @@ Author: study777 <1569092380@qq.com>
 Date:   Tue Oct 24 18:08:41 2017 +0800
 
     add a file
+
+
+
+git  log
+
+
+git  show  hashcode
+
+
+
