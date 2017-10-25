@@ -379,13 +379,30 @@ Import code
 
 
 
+添加一个文件夹
+空文件夹不会显示，里面有为年才会显示
+
+mkdir.exe  dir
+touch   dir/a
+git status
 
 
+ git add .
+
+git commit -m "add a dir"
+
+git push origin master
 
 
+git  pull
+
+在github web console 上修改一个文件
+
+然后 本地 pull 操作
 
 
-
+把远程的origin 同步到master 分支上
+git pull origin master
 
 
 
