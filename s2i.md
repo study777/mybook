@@ -26,7 +26,7 @@ s2i   create    tomcat-s2i      tomcat-s2i
 vim  /opt/tomcat-s2i/Dockerfile
 
 
-# tomcat-s2i
+#tomcat-s2i
 FROM maven:3.3-jdk-7
 MAINTAINER xxx
 LABEL io.openshift.s2i.scripts-url=image:///usr/libexec/s2i \
@@ -64,11 +64,11 @@ vim /opt/tomcat-s2i/.s2i/bin/assemble
 
 #!/bin/bash -e
 #
-# S2I assemble script for the 'tomcat-s2i' image.
-# The 'assemble' script builds your application source so that it is ready to run.
+#S2I assemble script for the 'tomcat-s2i' image.
+#The 'assemble' script builds your application source so that it is ready to run.
 #
-# For more information refer to the documentation:
-#       https://github.com/openshift/source-to-image/blob/master/docs/builder_image.md
+#For more information refer to the documentation:
+#https://github.com/openshift/source-to-image/blob/master/docs/builder_image.md
 #
 
 if [[ "$1" == "-h" ]]; then
@@ -77,7 +77,7 @@ if [[ "$1" == "-h" ]]; then
         exec /usr/libexec/s2i/usage
 fi
 
-# Restore artifacts from the previous build (if they exist).
+#Restore artifacts from the previous build (if they exist).
 #
 if [ "$(ls /tmp/artifacts/ 2>/dev/null)" ]; then
   echo "---> Restoring build artifacts..."
