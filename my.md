@@ -404,8 +404,14 @@ git  pull
 把远程的origin 同步到master 分支上
 git pull origin master
 
+查看远程仓库
+git remote -v
+
+删除远程仓库
 
 
+ git remote rm  origin
+  git remote rm  origin-my
 
 
 
