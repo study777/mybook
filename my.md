@@ -411,7 +411,13 @@ git remote -v
 
 
  git remote rm  origin
+
   git remote rm  origin-my
+
+git clone 自动建立远程仓库关联关系
+
+git clone https://github.com/study777/demo
+
 
 
 
