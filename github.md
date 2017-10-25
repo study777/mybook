@@ -454,3 +454,5 @@ npm install git-it -g
 安装后 输入命令 在cmd
 
 git-it 
+
+test github on linux OS
