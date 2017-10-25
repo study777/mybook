@@ -104,7 +104,7 @@ mvn clean
 
 > /opt/tomcat-s2i/.s2i/bin/run
 vim /opt/tomcat-s2i/.s2i/bin/run 
-
+```
 #!/bin/bash -e
 bash -c "/opt/apache-tomcat-8.5.5/bin/catalina.sh run"
 ```
