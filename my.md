@@ -80,7 +80,7 @@ cat ~/.gitconfig
 
 
 
-7 补充 Git Bash 操作
+## 7 补充 Git Bash 操作
 
 
 
