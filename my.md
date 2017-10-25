@@ -1,4 +1,4 @@
-6  Git  工具
+## 6  Git  工具
 
 git 工具下载和安装
 
@@ -130,7 +130,7 @@ On branch master
 
 
 
-7 Git  命令1
+## 8 Git  命令1
 
 工作区    workspace
  
@@ -277,7 +277,7 @@ git  show  hashcode
 
 
 
-8 Git  命令2
+## 9 Git  命令2
 
 
 Remote 远程仓库
