@@ -456,10 +456,4 @@ npm install git-it -g
 git-it 
 
 
-add a file
-
-
-
-
-
 
