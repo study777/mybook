@@ -1,4 +1,7 @@
 #config  vim  for markdown
+
+yum -y install firefox
+
 # vim markdown config
 
 Config vim view in web
