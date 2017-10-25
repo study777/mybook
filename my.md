@@ -441,6 +441,23 @@ git  push
 
 git commit -a -m "add"
 
+在线练习地址
+1 https://try.github.io/levels/1/challenges/1
+
+2 git-it 
+
+安装nodejs
+npm -v
+
+npm install git-it -g
+
+安装后 输入命令 在cmd
+
+git-it 
+
+
+
+
 
 
 
