@@ -91,10 +91,10 @@ cp -Rf /tmp/src/. ./
 echo "---> Building application from source..."
 # TODO: Add build steps for your application, eg npm install, bundle install
 ```
-
 *```cp -Rf /tmp/src/.  ./
-mvn -Dmaven.test.skip=true package
-find . -type f -name '*.war'|xargs -i cp {} /opt/apache-tomcat-8.5.5/webapps/
+
+mvn -Dmaven.test.skip=true package  
+find . -type f -name '*.war'|xargs -i cp {} /opt/apache-tomcat-8.5.5/webapps/  
 mvn clean```*
 
 
