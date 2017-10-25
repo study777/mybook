@@ -273,3 +273,4 @@ tags:
       
 
 # 在openshift 上测试builder image
+<font color="#4590a3" size = "6px">文字</font>
