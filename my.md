@@ -418,18 +418,28 @@ git clone 自动建立远程仓库关联关系
 
 git clone https://github.com/study777/demo
 
+git  push 
+
 练习
 1 在 C: 简历文件夹 hello-git
+
 2 在 hello-git 中初始化仓库
+
 3 在 hello-git 中创建文件README.md 内容随意
+
 4 把 README.md 提交到本地仓库中
+
 5 在自己的Github 账户中创建 hello-git 空仓库
+
 6 把自己本地的hello-git仓库与远程仓库 hello-git 仓库关联上
+
 7 把本地的hello-git 仓库中的内容 push 到远程hello-git 仓库中
+
 8 在Github 的 hello-git仓库中，验证存在文件 README.md
 
 
 
+git commit -a -m "add"
 
 
 
