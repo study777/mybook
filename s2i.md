@@ -26,7 +26,8 @@ s2i   create    tomcat-s2i      tomcat-s2i
 vim  /opt/tomcat-s2i/Dockerfile
 
 
-\#tomcat-s2i
+```
+#tomcat-s2i
 FROM maven:3.3-jdk-7
 MAINTAINER xxx
 LABEL io.openshift.s2i.scripts-url=image:///usr/libexec/s2i \
@@ -49,7 +50,7 @@ USER 1001
 EXPOSE 8080
 ENTRYPOINT []
 CMD ["usage"]
-
+```
 
 
 
