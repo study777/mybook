@@ -58,7 +58,7 @@ CMD ["usage"]
 编辑S2I 脚本文件
 大多为默认配置  蓝色为 最后追加内容
 
-
+```
 >  /opt/tomcat-s2i/.s2i/bin/assemble
 
 vim /opt/tomcat-s2i/.s2i/bin/assemble
@@ -105,7 +105,7 @@ vim /opt/tomcat-s2i/.s2i/bin/run
 
 #!/bin/bash -e
 bash -c "/opt/apache-tomcat-8.5.5/bin/catalina.sh run"
-
+```
 
 
 
