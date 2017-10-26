@@ -1,3 +1,120 @@
+#  环境准备  搭建一个svn 并载入测试代码
+
+搭建  http  svn
+
+
+yum install httpd
+
+httpd  -v
+
+Server version: Apache/2.4.6 (CentOS)
+
+Server built:   Nov 14 2016 18:04:44
+
+
+
+yum install subversion
+
+svnserve --version
+
+svnserve, version 1.7.14 
+
+
+yum install mod_dav_svn
+
+
+
+
+
+find / -name mod_dav_svn.so
+
+
+/usr/lib64/httpd/modules/mod_dav_svn.so
+
+
+find / -name mod_authz_svn.so
+
+/usr/lib64/httpd/modules/mod_authz_svn.so
+
+
+mkdir /var/www/svn
+
+svnadmin create /var/www/svn/spring-hello-world
+
+
+
+chown -R apache:apache /var/www/svn/spring-hello-world/
+
+
+
+
+
+touch /var/www/svn/passwd  
+
+htpasswd /var/www/svn/passwd admin  
+
+
+cp /var/www/svn/spring-hello-world/conf/authz /var/www/svn/authz
+
+
+cat /var/www/svn/authz 
+[/]
+admin = rw
+
+
+
+
+touch /etc/httpd/conf.d/subversion.conf
+
+
+cat /etc/httpd/conf.d/subversion.conf 
+```
+<Location /svn>
+    DAV svn
+    SVNParentPath /var/www/svn
+    AuthType Basic
+    AuthName "Authorization SVN"
+    AuthzSVNAccessFile /var/www/svn/authz
+    AuthUserFile /var/www/svn/passwd
+    Require valid-user
+</Location>
+```
+
+systemctl start httpd.service
+
+测试 svn
+
+浏览器 访问
+
+http://172.16.2.30/svn/spring-hello-world/
+
+账号密码都是 
+
+admin
+
+
+导入测试代码
+
+git clone https://github.com/nichochen/mybank-demo-maven
+
+
+svn import -m "First SVN Repo"  mybank-demo-maven   http://172.16.2.30/svn/spring-hello-world
+
+
+命令行测试导入的代码
+
+命令行测试
+
+svn co http://172.16.2.30/svn/spring-hello-world --no-auth-cache
+
+
+
+
+
+
+
+
+
 cd /opt
 
 
