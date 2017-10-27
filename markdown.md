@@ -149,7 +149,9 @@ ___加粗斜体2___
 
 [baidu]:http://www.baidu.com
 
+链接别名使用示例
 
+[链接别名][baidu]
 
 
 
