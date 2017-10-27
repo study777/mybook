@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #  安装 delve 调试工具
 
 先设置$GOPATH
