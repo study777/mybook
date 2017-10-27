@@ -1,10 +1,41 @@
-先设置$GOPATH
+# 先设置$GOPATH
+
+vim /etc/profile
+
+```
+export GOROOT=/usr/local/go
+export GOBIN=$GOROOT/bin
+export PATH=$PATH:$GOBIN
+export GOPATH=/go
+```
+
+
 
 
 在GOPATH下创建三个目录  bin   pkg   src
 
+# 在线安装
 
 执行go get github.com/derekparker/delve/cmd/dlv
+
+# 离线安装
+
+
+
+mkdir -p /go/src/github.com/derekparker
+
+cd  /go/src/github.com/derekparker
+
+git clone https://github.com/derekparker/delve.git
+
+
+/go/src/github.com/derekparker/delve
+
+go install github.com/derekparker/delve/cmd/dlv
+
+
+mkae install
+
 
 
 dlv会被安装在$GOPATH/bin目录下（推荐）
