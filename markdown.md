@@ -164,7 +164,7 @@ ___加粗斜体2___
 
 ![alt](url txt)
 
-![百度](/img/baidu.png baidu)
+![百度](img/baidu.png baidu)
 
 
 My profile
