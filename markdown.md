@@ -116,7 +116,9 @@ ___加粗斜体2___
 
 [链接到test.md](/local_md/lianjie.md)
   链接本文档的其他部分
-[链接到本文档的其他部分](markdown.md#列表项)
+[链接本文档的列表项 位置](markdown.md#列表项)
+
+[链接到有序列表](markdown.md#百度)
 
 内部链接
 
