@@ -171,7 +171,7 @@ ___加粗斜体2___
 ![百度][引入链接百度]
 
 
-[引入链接百度]:(img/baidu.png)
+[引入链接百度]: img/baidu.png
 
 
 My profile
