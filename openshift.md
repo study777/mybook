@@ -234,8 +234,9 @@ partprobe
 
 # 禁用ansible  自动配置yum
 
+```
 >  /root/openshift-ansible-release-3.6/roles/openshift_repos/files/origin/repos/openshift-ansible-centos-paas-sig.repo
-
+```
 
 
 
