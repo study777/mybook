@@ -43,6 +43,8 @@ swap  8064 MiB
 配置网卡
 删除uuid mac地址等信息，以便可以方便的进行克隆
 
+ls | grep -v  CentOS-Base.repo | xargs  rm  -rf
+
 vi  /etc/yum.repos.d/CentOS-Base.repo
 
 ```
