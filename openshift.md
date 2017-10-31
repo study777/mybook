@@ -177,6 +177,13 @@ lvmconf   --disable-cluster
 
 docker-storage-setup
 
+systemctl  start docker
+
+systemctl  enable docker
+
+
+
+
 
 # 为glusterfs 配置存储块设备
 
@@ -308,4 +315,44 @@ yum -y install ntpdate
 
 
 
+
+
+# 配置 ssh  key
+
+ ssh-keygen -f ~/.ssh/id_rsa -N ''
+ 
+
+ for host in  master-160.example.com    node-161.example.com    node-162.example.com;  do  ssh-copy-id -i ~/.ssh/id_rsa.pub $host;  done
+
+#  导入 基础 image
+
+cd /root/op3.6-images/
+
+docker load -i     hello-openshift.latest.tar
+
+docker load -i     kubernetes.latest.tar  
+
+docker load -i     origin-deployer3.6.0.tar  
+
+docker load -i     origin-docker-registry.3.6.0.tar  
+
+docker load -i   origin-haproxy-router.3.6.0.tar  
+
+docker load -i    origin-pod.3.6.0.tar
+
+docker load -i    origin-sti-builder.3.6.0.tar
+
+
+
+
+# 执行 ansible  开始安装
+
+
+yum -y install etcd 
+
+systemctl start etcd
+
+
+
+ansible-playbook -i /etc/ansible/hosts   /root/openshift-ansible-release-3.6/playbooks/byo/config.yml 
 
