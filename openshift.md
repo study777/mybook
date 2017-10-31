@@ -241,6 +241,9 @@ partprobe
 
 
 # ansible 清单文件如下
+
+cat /etc/ansible/hosts 
+
 ```
 [OSEv3:children]
 masters
