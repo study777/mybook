@@ -269,7 +269,7 @@ openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 
 master-160.example.com
 
 [etcd]
-master1.example.com
+master-160.example.com
 
 [nodes]
 node-161.example.com  openshift_schedulable=True  openshift_node_labels="{'region': 'infra', 'zone': 'default'}"
