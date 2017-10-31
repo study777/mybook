@@ -207,16 +207,25 @@ partprobe
 创建第二个块设备
 
 fdisk  /dev/vda
+
 Command (m for help): n
+
 All primary partitions are in use
+
 Adding logical partition 5
+
 First sector (144459776-175915007, default 144459776): 
+
 Using default value 144459776
+
 Last sector, +sectors or +size{K,M,G} (144459776-175915007, default 175915007): +12G    
+
 Partition 5 of type Linux and of size 12 GiB is set
 
 Command (m for help): w  
+
 The partition table has been altered!
+
 partprobe
 
 
