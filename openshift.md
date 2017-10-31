@@ -279,6 +279,7 @@ master-160.example.com
 master-160.example.com
 
 [nodes]
+master-160.example.com  openshift_schedulable=True  openshift_node_labels="{'region': 'infra', 'zone': 'default'}"
 node-161.example.com  openshift_schedulable=True  openshift_node_labels="{'region': 'infra', 'zone': 'default'}"
 node-162.example.com  openshift_schedulable=True   openshift_node_labels="{'region': 'infra', 'zone': 'default'}"
 
