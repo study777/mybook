@@ -250,28 +250,27 @@ masters
 nodes
 etcd
 glusterfs
-# Set variables common for all OSEv3 hosts
+
 [OSEv3:vars]
-# # SSH user, this user should allow ssh based auth without requiring a password
+
 ansible_ssh_user=root
-#
-# # If ansible_ssh_user is not root, ansible_become must be set to true
+
+
 ansible_become=true
-#
+
 openshift_deployment_type=origin
-#
+
 openshift_disable_check=memory_availability,disk_availability,docker_storage,docker_image_availability
-#
-# # uncomment the following to enable htpasswd authentication; defaults to DenyAllPasswordIdentityProvider
+
+
 openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider', 'filename': '/etc/origin/master/htpasswd'}]
-#
-# # host group for masters
+
 [masters]
 master-160.example.com
 
 [etcd]
 master1.example.com
-# # host group for nodes, includes region info
+
 [nodes]
 node-161.example.com  openshift_schedulable=True  openshift_node_labels="{'region': 'infra', 'zone': 'default'}"
 node-162.example.com  openshift_schedulable=True   openshift_node_labels="{'region': 'infra', 'zone': 'default'}"
