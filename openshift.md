@@ -161,6 +161,7 @@ partprobe
 
 
 pvcreate /dev/vda3
+
 vgcreate c2 /dev/vda3
 
 systemctl stop docker
