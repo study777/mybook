@@ -328,21 +328,23 @@ yum -y install ntpdate
 
 cd /root/op3.6-images/
 
-docker load -i     hello-openshift.latest.tar
+docker load -i    hello-openshift.latest.tar
 
-docker load -i     kubernetes.latest.tar  
+docker load -i    kubernetes.latest.tar  
 
-docker load -i     origin-deployer3.6.0.tar  
+docker load -i    origin-deployer3.6.0.tar  
 
-docker load -i     origin-docker-registry.3.6.0.tar  
+docker load -i    origin-docker-registry.3.6.0.tar  
 
-docker load -i   origin-haproxy-router.3.6.0.tar  
+docker load -i    origin-haproxy-router.3.6.0.tar  
 
 docker load -i    origin-pod.3.6.0.tar
 
 docker load -i    origin-sti-builder.3.6.0.tar
 
+docker load -i    gluster-centos.tar
 
+docker load -i    heketi.tar
 
 
 # 执行 ansible  开始安装
@@ -353,6 +355,42 @@ yum -y install etcd
 systemctl start etcd
 
 
+yum install glusterfs-fuse
+
 
 ansible-playbook -i /etc/ansible/hosts   /root/openshift-ansible-release-3.6/playbooks/byo/config.yml 
+
+
+
+failed: [master-160.example.com] (item=master-160.example.com) => {"failed": true, "item": "master-160.example.com", "msg": {"cmd": "/usr/bin/oc label node master-160.example.com glusterfs=storage-host --overwrite", "results": {}, "returncode": 1, "stderr": "Error from server (NotFound): nodes \"master-160.example.com\" not found\n", "stdout": ""}}
+
+
+手动执行命令
+
+oc label node master-160.example.com glusterfs=storage-host --overwrite
+
+
+Error from server (NotFound): nodes "master-160.example.com" not found
+
+
+gluster/gluster-centos:latest
+
+
+oc  policy  add-role-to-user  admin  dev   -n  default
+
+oc  policy  add-role-to-user  admin  dev   -n  openshift
+
+oc  policy  add-role-to-user  admin  dev   -n  glusterfs
+
+
+
+htpasswd -b /etc/origin/master/htpasswd dev dev
+
+
+oc login -u system:admin
+
+
+
+
+
 
