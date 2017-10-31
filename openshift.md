@@ -181,14 +181,21 @@ docker-storage-setup
 # 为glusterfs 配置存储块设备
 
 创建第一个块设备
+
 fdisk  /dev/vda
+
 Command (m for help): n
+
 Select (default e): e
+
 Selected partition 4
 
 First sector (144457728-209715199, default 144457728): 回车
+
 Last sector, +sectors or +size{K,M,G} (144457728-209715199, default 209715199): +15G
+
 Using default value 209715199
+
 Partition 4 of type Linux and of size 31.1 GiB is set
 
 
