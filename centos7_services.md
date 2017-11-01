@@ -5,7 +5,7 @@ yum install -y ntp
 ntpdate 1.asia.pool.ntp.org
 
 
-\> /etc/ntp.conf
+> /etc/ntp.conf
 
 vim  /etc/ntp.conf
 
