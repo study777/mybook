@@ -37,6 +37,10 @@ swap  8064 MiB
 
 最小化安装
 
+设置主机名
+
+ hostnamectl    set-hostname   master2.example.com
+
 
 配置本地yum
 
