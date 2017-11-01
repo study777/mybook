@@ -25,7 +25,7 @@ systemctl start ntpd
 ```
 yum -y install bind*
 
-\> /etc/named.conf
+> /etc/named.conf
 
 vim  /etc/named.conf
 
