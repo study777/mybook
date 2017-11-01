@@ -84,9 +84,9 @@ $TTL 3600
                IN  NS   dns.example.com.
 dns            IN   A    172.16.10.170
 master-161         IN   A    172.16.10.161
-node-162        IN   A    172.16.2.162
-node-163         IN   A    172.16.2.163
-node-164        IN   A    172.16.2.164
+node-162        IN   A    172.16.10.162
+node-163         IN   A    172.16.10.163
+node-164        IN   A    172.16.10.164
 
 
 
