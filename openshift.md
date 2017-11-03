@@ -39,8 +39,17 @@ swap  8064 MiB
 
 设置主机名
 
- hostnamectl    set-hostname   master2.example.com
+```
+hostnamectl  set-hostname  master-160.example.com
 
+hostnamectl  set-hostname  node-161.example.com
+
+hostnamectl  set-hostname  node-162.example.com
+
+hostnamectl  set-hostname  node-163.example.com
+
+hostnamectl  set-hostname  node-164.example.com
+```
 
 配置本地yum
 
