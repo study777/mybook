@@ -284,9 +284,10 @@ master-160.example.com
 master-160.example.com
 
 [nodes]
-node-161.example.com    openshift_schedulable=True  openshift_node_labels="{'region': 'infra', 'zone': 'default'}"
-node-162.example.com    openshift_schedulable=True   openshift_node_labels="{'region': 'infra', 'zone': 'default'}"
-node-163.example.com    openshift_schedulable=True   openshift_node_labels="{'region': 'infra', 'zone': 'default'}"
+node-161.example.com    
+node-162.example.com   
+node-163.example.com    
+node-164.example.com    openshift_schedulable=True   openshift_node_labels="{'region': 'infra', 'zone': 'default'}"
 
 [glusterfs]
 node-161.example.com   glusterfs_ip=172.16.2.161   glusterfs_devices='[ "/dev/vda4", "/dev/vda5" ]'
@@ -328,7 +329,7 @@ yum -y install ntpdate
  ssh-keygen -f ~/.ssh/id_rsa -N ''
  
 
- for host in  master-160.example.com    node-161.example.com    node-162.example.com;  do  ssh-copy-id -i ~/.ssh/id_rsa.pub $host;  done
+ for host in  master-160.example.com    node-161.example.com    node-162.example.com node-163.example.com node-164.example.com;  do  ssh-copy-id -i ~/.ssh/id_rsa.pub $host;  done
 
 #  导入 基础 image
 
