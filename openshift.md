@@ -326,11 +326,12 @@ yum -y install ntpdate
 
 # 配置 ssh  key
 
+```
  ssh-keygen -f ~/.ssh/id_rsa -N ''
  
 
  for host in  master-160.example.com    node-161.example.com    node-162.example.com node-163.example.com node-164.example.com;  do  ssh-copy-id -i ~/.ssh/id_rsa.pub $host;  done
-
+```
 #  导入 基础 image
 
 cd /root/op3.6-images/
