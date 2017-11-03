@@ -14,6 +14,8 @@ to retry, use: --limit @/root/openshift-ansible-release-3.6/playbooks/byo/config
 The route is not accepting traffic yet because it has not been admitted by a router
 
 解决
+web console 如下信息
+The route is not accepting traffic yet because it has not been admitted by a router. 
 
 oadm policy add-scc-to-user privileged system:serviceaccount:default:router
 
