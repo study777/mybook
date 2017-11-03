@@ -399,4 +399,6 @@ oc login -u system:admin
 
 
 
+卸载：
 
+ansible-playbook -i /etc/ansible/hosts   /root/openshift-ansible-release-3.6/playbooks/adhoc/uninstall.yml
