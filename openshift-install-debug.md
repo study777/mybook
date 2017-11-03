@@ -98,3 +98,17 @@ Failure summary:
      Task:     Verify heketi service
      Message:  Failed without returning a message.
 ```
+
+
+
+
+```
+手动执行命令 报错信息
+
+oc rsh --namespace=glusterfs deploy-heketi-storage-1-84c9c heketi-cli -s http://localhost:8080 --user admin --secret KFgLa74SXuq+/abemyXiPox4F5786+cGRNj+sDEnCwc= cluster list
+
+Error: signature is invalid
+command terminated with exit code 255
+
+
+```
