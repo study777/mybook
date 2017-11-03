@@ -59,3 +59,42 @@ Failure summary:
                  ^ here	
 	
 ```
+
+
+
+```
+使用最新 ansible  只有vda5 时的报错
+
+TASK [openshift_storage_glusterfs : Verify heketi service] ********************************************
+fatal: [master-160.example.com]: FAILED! => {"changed": false, "cmd": ["oc", "rsh", "--namespace=glusterfs", "deploy-heketi-storage-1-84c9c", "heketi-cli", "-s", "http://localhost:8080", "--user", "admin", "--secret", "b7TZ8dZhoRPJpdCqhfLHEcoHUaED77xn88bAMat4Ey4=", "cluster", "list"], "delta": "0:00:00.494253", "end": "2017-11-03 18:42:23.301992", "failed": true, "rc": 255, "start": "2017-11-03 18:42:22.807739", "stderr": "Error: signature is invalid\ncommand terminated with exit code 255", "stderr_lines": ["Error: signature is invalid", "command terminated with exit code 255"], "stdout": "", "stdout_lines": []}
+	to retry, use: --limit @/root/openshift-ansible/playbooks/byo/config.retry
+
+PLAY RECAP ********************************************************************************************
+localhost                  : ok=13   changed=0    unreachable=0    failed=0   
+master-160.example.com     : ok=346  changed=67   unreachable=0    failed=1   
+node-161.example.com       : ok=176  changed=35   unreachable=0    failed=0   
+node-162.example.com       : ok=174  changed=35   unreachable=0    failed=0   
+node-163.example.com       : ok=174  changed=35   unreachable=0    failed=0   
+node-164.example.com       : ok=169  changed=31   unreachable=0    failed=0   
+
+
+INSTALLER STATUS **************************************************************************************
+Initialization             : Complete
+Health Check               : Complete
+etcd Install               : Complete
+Master Install             : Complete
+Master Additional Install  : Complete
+Node Install               : Complete
+GlusterFS Install          : In Progress
+	This phase can be restarted by running: playbooks/byo/openshift-glusterfs/config.yml
+
+
+
+Failure summary:
+
+
+  1. Hosts:    master-160.example.com
+     Play:     Configure GlusterFS
+     Task:     Verify heketi service
+     Message:  Failed without returning a message.
+```
