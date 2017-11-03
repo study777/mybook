@@ -407,9 +407,15 @@ htpasswd -b /etc/origin/master/htpasswd dev dev
 oc login -u system:admin
 
 
+git clone https://github.com/openshift/openshift-ansible.git
+
+>  /root/openshift-ansible/roles/openshift_repos/templates/CentOS-OpenShift-Origin36.repo.j2
+
+ansible-playbook -i /etc/ansible/hosts   /root/openshift-ansible/playbooks/byo/config.yml 
 
 
 
 卸载：
 
 ansible-playbook -i /etc/ansible/hosts   /root/openshift-ansible-release-3.6/playbooks/adhoc/uninstall.yml
+
