@@ -5,3 +5,26 @@ fatal: [master-160.example.com]: FAILED! => {"attempts": 30, "changed": false, "
 	to retry, use: --limit @/root/openshift-ansible-release-3.6/playbooks/byo/config.retry
 
 ```
+
+```
+报错信息：
+
+The route is not accepting traffic yet because it has not been admitted by a router
+
+解决
+
+oadm policy add-scc-to-user privileged system:serviceaccount:default:router
+
+oadm policy add-cluster-role-to-user cluster-reader system:serviceaccount:default:router
+
+oadm router router --replicas=1 --service-account=router --selector='region=infra'
+
+oc get node --show-labels
+
+oc label node node1.example.com region=infra
+
+链接 ：http://blog.csdn.net/computer1024/article/details/78348280
+
+
+
+```
