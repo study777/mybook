@@ -32,3 +32,30 @@ oc label node node1.example.com region=infra
 
 
 ```
+
+
+```
+只有vda5 时的报错信息
+
+
+fatal: [master-160.example.com]: FAILED! => {"failed": true, "msg": "the field 'args' has an invalid value, which appears to include a variable that is undefined. The error was: 'dict object' has no attribute 'results'\n\nThe error appears to have been in '/root/openshift-ansible-release-3.6/roles/openshift_storage_glusterfs/tasks/glusterfs_common.yml': line 193, column 3, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n\n- name: Set heketi-cli command\n  ^ here\n"}
+	to retry, use: --limit @/root/openshift-ansible-release-3.6/playbooks/byo/config.retry
+	
+	
+Failure summary:
+
+  1. Host:     master-160.example.com
+     Play:     Configure GlusterFS
+     Task:     openshift_storage_glusterfs : Set heketi-cli command
+     Message:  the field 'args' has an invalid value, which appears to include a variable that is undefined. The error was: 'dict object' has no attribute 'results'
+               
+               The error appears to have been in '/root/openshift-ansible-release-3.6/roles/openshift_storage_glusterfs/tasks/glusterfs_common.yml': line 193, column 3, but may
+               be elsewhere in the file depending on the exact syntax problem.
+               
+               The offending line appears to be:
+               
+               
+               - name: Set heketi-cli command
+                 ^ here	
+	
+```
