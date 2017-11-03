@@ -37,6 +37,10 @@ swap  8064 MiB
 
 最小化安装
 
+设置主机名
+
+ hostnamectl    set-hostname   master2.example.com
+
 
 配置本地yum
 
@@ -261,7 +265,8 @@ glusterfs
 [OSEv3:vars]
 
 ansible_ssh_user=root
-
+openshift_storage_glusterfs_namespace=glusterfs 
+openshift_storage_glusterfs_name=storage 
 
 ansible_become=true
 
@@ -279,14 +284,14 @@ master-160.example.com
 master-160.example.com
 
 [nodes]
-master-160.example.com  openshift_schedulable=True  openshift_node_labels="{'region': 'infra', 'zone': 'default'}"
-node-161.example.com  openshift_schedulable=True  openshift_node_labels="{'region': 'infra', 'zone': 'default'}"
-node-162.example.com  openshift_schedulable=True   openshift_node_labels="{'region': 'infra', 'zone': 'default'}"
+node-161.example.com    openshift_schedulable=True  openshift_node_labels="{'region': 'infra', 'zone': 'default'}"
+node-162.example.com    openshift_schedulable=True   openshift_node_labels="{'region': 'infra', 'zone': 'default'}"
+node-163.example.com    openshift_schedulable=True   openshift_node_labels="{'region': 'infra', 'zone': 'default'}"
 
 [glusterfs]
-master-160.example.com glusterfs_ip=172.16.2.160   glusterfs_devices='[ "/dev/vda4", "/dev/vda5" ]'
 node-161.example.com   glusterfs_ip=172.16.2.161   glusterfs_devices='[ "/dev/vda4", "/dev/vda5" ]'
 node-162.example.com   glusterfs_ip=172.16.2.162   glusterfs_devices='[ "/dev/vda4", "/dev/vda5" ]'
+node-163.example.com   glusterfs_ip=172.16.2.163   glusterfs_devices='[ "/dev/vda4", "/dev/vda5" ]'
 ```
 
 # 配置DNS 服务器
