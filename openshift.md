@@ -461,3 +461,377 @@ node-163.example.com     glusterfs_ip=172.16.10.163   glusterfs_devices='[ "/dev
 node-164.example.com     glusterfs_ip=172.16.10.164   glusterfs_devices='[ "/dev/sda5" ]'
 ```
 
+
+
+# GlusterFS
+
+oc project glusterfs
+
+查看 Gluster Endpoints
+
+oc get endpoints 
+
+heketi-db-storage-endpoints   172.16.10.162:1,172.16.10.163:1,172.16.10.164:1   1d
+
+
+
+oc get endpoints  heketi-db-storage-endpoints  -o yaml
+apiVersion: v1
+kind: Endpoints
+metadata:
+  creationTimestamp: 2017-11-03T16:39:18Z
+  name: heketi-db-storage-endpoints
+  namespace: glusterfs
+  resourceVersion: "2264"
+  selfLink: /api/v1/namespaces/glusterfs/endpoints/heketi-db-storage-endpoints
+  uid: 8964a176-c0b5-11e7-8a0a-000c298f426c
+subsets:
+- addresses:
+  - ip: 172.16.10.162
+  - ip: 172.16.10.163
+  - ip: 172.16.10.164
+  ports:
+  - port: 1
+    protocol: TCP
+
+
+
+
+
+
+创建pv
+
+cat pv.yaml 
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: gluster-default-volume 
+spec:
+  capacity:
+    storage: 2Gi 
+  accessModes: 
+    - ReadWriteMany
+  glusterfs: 
+    endpoints: heketi-db-storage-endpoints 
+    path: myVol1 
+    readOnly: false
+  persistentVolumeReclaimPolicy: Retain 
+
+
+创建pvc
+
+
+cat gluster-claim.yaml 
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: gluster-claim
+spec:
+  accessModes:
+  - ReadWriteMany 
+  resources:
+     requests:
+       storage: 1Gi 
+
+
+
+
+
+确认pv和 pvc  状态都是bound
+
+oc get pv
+
+NAME                     CAPACITY   ACCESSMODES   RECLAIMPOLICY   STATUS    CLAIM                     STORAGECLASS   
+
+REASON    AGE
+
+gluster-default-volume   2Gi        RWX           Retain          Bound     glusterfs/gluster-claim                            12m
+
+
+
+
+oc get pvc
+
+NAME            STATUS    VOLUME                   CAPACITY   ACCESSMODES   STORAGECLASS   AGE
+
+gluster-claim   Bound     gluster-default-volume   2Gi        RWX                          11m
+
+
+
+
+
+
+
+
+
+
+## 持久化镜像仓库
+
+oc project default
+
+oc get pod
+
+docker-registry-1-m8tkm
+
+oc get dc
+
+
+oc volumes dc/docker-registry --all
+
+deploymentconfigs/docker-registry
+
+  empty directory as registry-storage
+
+    mounted at /registry
+
+  secret/registry-certificates as registry-certificates
+
+    mounted at /etc/secrets
+
+
+
+查看当前挂载的本地目录使用大小情况
+
+oc rsh  docker-registry-1-m8tkm  'du' '-sh'  '/registry'
+
+0	/registry
+
+当前 并未使用任何空间
+
+如果已经存在数据 可以通过以下方式进行备份
+
+mkdir  /root/backup
+
+cd /root/backup/
+
+
+oc rsync  docker-registry-1-m8tkm:/registry .
+
+
+创建 pv
+
+cat registry_pv.yaml 
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: registry-volume 
+spec:
+  capacity:
+    storage: 5Gi 
+  accessModes: 
+    - ReadWriteMany
+  glusterfs: 
+    endpoints: heketi-db-storage-endpoints 
+    path: registry 
+    readOnly: false
+  persistentVolumeReclaimPolicy: Retain 
+
+
+
+oc create -f registry_pv.yaml
+
+
+查看pv  状态   Available  即为可用
+
+
+
+oc get pv
+
+NAME                     CAPACITY   ACCESSMODES   RECLAIMPOLICY   STATUS 
+
+registry-volume          5Gi        RWX           Retain          Available 
+
+
+创建pvc
+
+cat registry_pvc.yaml 
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: docker-registry-claim
+spec:
+  accessModes:
+  - ReadWriteMany 
+  resources:
+     requests:
+       storage: 5Gi 
+
+
+
+
+
+
+oc create  -f registry_pvc.yaml
+
+oc get pvc   状态为 Bound
+
+NAME                    STATUS    VOLUME            CAPACITY   ACCESSMODES   STORAGECLASS   AGE
+
+docker-registry-claim   Bound     registry-volume   5Gi        RWX                          6s
+
+
+
+
+关联持久化请求
+
+为registry 的容器添加持久化卷请求 docker-registry-claim
+
+并与挂载点 registry-storage  关联
+
+
+oc volumes  dc/docker-registry  --add --name=registry-storage -t pvc --claim-name=docker-registry-claim --overwrite deploymentconfigs/docker-registry
+
+deploymentconfig "docker-registry" updated
+
+deploymentconfig "docker-registry" updated
+
+
+
+
+
+
+
+
+再次查看registry 的数据卷信息
+
+
+oc volumes dc/docker-registry --all
+deploymentconfigs/docker-registry
+  pvc/docker-registry-claim (allocated 5GiB) as registry-storage
+    mounted at /registry
+  secret/registry-certificates as registry-certificates
+    mounted at /etc/secrets
+
+
+
+
+
+
+
+报错信息
+
+```
+Unable to mount volumes for pod "docker-registry-2-hg798_default(d47a229f-c22b-11e7-a4fa-000c298f426c)": timeout expired waiting for volumes to attach/mount for pod "default"/"docker-registry-2-hg798". list of unattached/unmounted volumes=[registry-storage]
+```
+
+
+
+
+oc delete pod docker-registry-1-m8tkm
+
+
+
+
+
+
+
+# 对 registry 存储的操作有误如何修复 
+
+
+oc edit  dc docker-registry
+
+
+修改为如下
+
+
+volumes:
+      - emptyDir: {}
+        name: registry-storage
+      - name: registry-certificates
+        secret:
+          defaultMode: 420
+          secretName: registry-certificates
+
+
+
+
+
+# 为 mysql 配置 持久存储
+
+创建一个pv
+
+
+
+
+
+
+#  在web console 使用持久存储  应用于 mysql
+
+
+创建一个 pvc
+
+Persistent Volume Claims
+
+
+
+
+
+新建project  test1  web 页面点击 storage
+
+点击 create storage
+
+选中 之前创建的 gluster-storage 
+
+
+Name  自定义
+
+mysql
+
+Access Mode  Single User 
+
+Size
+
+1 G
+
+
+Create 
+
+
+
+
+
+
+volumes:
+        - name: mysql-data
+          persistentVolumeClaim:
+            claimName: mysql
+
+
+
+
+```
+Unable to mount volumes for pod "mysql-1-cfbdq_test1(edc9376a-c239-11e7-a4fa-000c298f426c)": timeout expired waiting for volumes to attach/mount for pod "test1"/"mysql-1-cfbdq". list of unattached/unmounted volumes=[mysql-data]
+2 times in the last 
+```
+
+```
+SchedulerPredicates failed due to PersistentVolumeClaim is not bound: "mysql", which is unexpected. (repeated 4 times)
+```
+
+```
+no persistent volumes available for this claim and no storage class is set
+
+
+
+```
+
+```
+Failed to provision volume with StorageClass "glusterfs-storage": glusterfs: create volume err: error creating volume Post http://heketi-storage-glusterfs.router.default.svc.cluster.local/volumes: dial tcp: lookup heketi-storage-glusterfs.router.default.svc.cluster.local: no such host.
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
