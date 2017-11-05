@@ -834,4 +834,12 @@ Failed to provision volume with StorageClass "glusterfs-storage": glusterfs: cre
 
 
 
+```
+oc get dc/mysql -o yaml
 
+volumes:
+      - name: mysql-data
+        persistentVolumeClaim:
+          claimName: mysql
+
+```
