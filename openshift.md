@@ -940,11 +940,11 @@ git clone https://github.com/openshift/openshift-ansible.git
 
 cd /root/openshift-ansible/roles/openshift_repos/templates/
 
-> CentOS-OpenShift-Origin14.repo.j2 
+\> CentOS-OpenShift-Origin14.repo.j2 
 
-> CentOS-OpenShift-Origin15.repo.j2 
+\> CentOS-OpenShift-Origin15.repo.j2 
 
-> CentOS-OpenShift-Origin36.repo.j2 
+\> CentOS-OpenShift-Origin36.repo.j2 
 
 \> CentOS-OpenShift-Origin.repo.j2 
 
