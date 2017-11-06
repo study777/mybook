@@ -932,3 +932,45 @@ node-163.example.com     glusterfs_ip=172.16.10.163   glusterfs_devices='[ "/dev
 node-164.example.com     glusterfs_ip=172.16.10.164   glusterfs_devices='[ "/dev/sda5" ]'
 ```
 
+docker  pull docker.io/openshift/origin-service-catalog
+
+
+
+git clone https://github.com/openshift/openshift-ansible.git
+
+cd /root/openshift-ansible/roles/openshift_repos/templates/
+
+> CentOS-OpenShift-Origin14.repo.j2 
+
+> CentOS-OpenShift-Origin15.repo.j2 
+
+> CentOS-OpenShift-Origin36.repo.j2 
+
+> CentOS-OpenShift-Origin.repo.j2 
+
+
+ansible-playbook -i /etc/ansible/hosts /root/openshift-ansible/playbooks/byo/config.yml
+
+
+output
+```
+PLAY RECAP *******************************************************************************************************************************************************************************************************
+localhost                  : ok=13   changed=0    unreachable=0    failed=0   
+master-161.example.com     : ok=587  changed=120  unreachable=0    failed=0   
+node-162.example.com       : ok=174  changed=14   unreachable=0    failed=0   
+node-163.example.com       : ok=174  changed=14   unreachable=0    failed=0   
+node-164.example.com       : ok=174  changed=14   unreachable=0    failed=0   
+node-165.example.com       : ok=170  changed=13   unreachable=0    failed=0   
+
+
+INSTALLER STATUS *************************************************************************************************************************************************************************************************
+Initialization             : Complete
+Health Check               : Complete
+etcd Install               : Complete
+Master Install             : Complete
+Master Additional Install  : Complete
+Node Install               : Complete
+GlusterFS Install          : Complete
+Hosted Install             : Complete
+Service Catalog Install    : Complete
+```
