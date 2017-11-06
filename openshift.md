@@ -946,7 +946,7 @@ cd /root/openshift-ansible/roles/openshift_repos/templates/
 
 > CentOS-OpenShift-Origin36.repo.j2 
 
-> CentOS-OpenShift-Origin.repo.j2 
+\> CentOS-OpenShift-Origin.repo.j2 
 
 
 ansible-playbook -i /etc/ansible/hosts /root/openshift-ansible/playbooks/byo/config.yml
