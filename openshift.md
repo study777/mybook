@@ -363,6 +363,7 @@ docker load -i    gluster-centos.tar
 
 docker load -i    heketi.tar
 
+docker load -i heketi-dev.tar 
 
 # 执行 ansible  开始安装
 
@@ -931,6 +932,10 @@ node-162.example.com     glusterfs_ip=172.16.10.162   glusterfs_devices='[ "/dev
 node-163.example.com     glusterfs_ip=172.16.10.163   glusterfs_devices='[ "/dev/sda5" ]'
 node-164.example.com     glusterfs_ip=172.16.10.164   glusterfs_devices='[ "/dev/sda5" ]'
 ```
+
+docker load -i heketi-dev.tar 
+
+
 
 docker  pull docker.io/openshift/origin-service-catalog
 
