@@ -473,12 +473,14 @@ oc get endpoints
 
 heketi-db-storage-endpoints   172.16.10.162:1,172.16.10.163:1,172.16.10.164:1   1d
 
-
-
 oc get endpoints  heketi-db-storage-endpoints  -o yaml
+
 apiVersion: v1
+
 kind: Endpoints
+
 metadata:
+
   creationTimestamp: 2017-11-03T16:39:18Z
   name: heketi-db-storage-endpoints
   namespace: glusterfs
@@ -841,5 +843,18 @@ volumes:
       - name: mysql-data
         persistentVolumeClaim:
           claimName: mysql
+
+```
+
+
+```
+报错信息
+
+TASK [openshift_service_catalog : Label master-160.example.com for APIServer and controller deployment] *****************************************
+fatal: [master-160.example.com]: FAILED! => {"changed": false, "failed": true, "msg": {"cmd": "/usr/bin/oc label node master-160.example.com openshift-infra=apiserver --overwrite", "results": {}, "returncode": 1, "stderr": "Error from server (NotFound): nodes \"master-160.example.com\" not found\n", "stdout": ""}}
+	to retry, use: --limit @/root/openshift-ansible/playbooks/byo/config.retry
+
+
+oc label node master-160.example.com  openshift-infra=apiserver --overwrite
 
 ```
