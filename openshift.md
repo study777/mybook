@@ -858,3 +858,40 @@ fatal: [master-160.example.com]: FAILED! => {"changed": false, "failed": true, "
 oc label node master-160.example.com  openshift-infra=apiserver --overwrite
 
 ```
+
+
+#  Success install a cluster  and  don't Manual start etcd 
+
+```
+[OSEv3:children]
+masters
+nodes
+etcd
+
+[OSEv3:vars]
+
+ansible_ssh_user=root
+
+
+ansible_become=true
+
+openshift_deployment_type=origin
+openshift_version=3.6.0
+openshift_disable_check=memory_availability,disk_availability,docker_storage,docker_image_availability
+
+
+openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider', 'filename': '/etc/origin/master/htpasswd'}]
+
+[masters]
+master-160.example.com
+
+[etcd]
+master-160.example.com
+
+[nodes]
+node-161.example.com  openshift_schedulable=True  openshift_node_labels="{'region': 'infra', 'zone': 'default'}"
+node-162.example.com  openshift_schedulable=True  openshift_node_labels="{'region': 'infra', 'zone': 'default'}"
+```
+
+ansible-playbook -i /etc/ansible/hosts /root/openshift-ansible-release-3.6/playbooks/byo/config.yml
+
