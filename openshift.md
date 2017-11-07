@@ -982,3 +982,40 @@ GlusterFS Install          : Complete
 Hosted Install             : Complete
 Service Catalog Install    : Complete
 ```
+
+
+# success but  systemctl restart  origin-master   output  Failed to restart origin-master.service: Unit is masked.
+```
+[OSEv3:children]
+masters
+nodes
+etcd
+glusterfs
+[OSEv3:vars]
+openshift_enable_service_catalog=false
+ansible_ssh_user=root
+ansible_become=true
+openshift_deployment_type=origin
+openshift_version=3.6.0
+openshift_storage_glusterfs_namespace=glusterfs 
+openshift_storage_glusterfs_name=storage
+openshift_disable_check=memory_availability,disk_availability,docker_storage,docker_image_availability
+openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider', 'filename': '/etc/origin/master/htpasswd'}]
+
+[masters]
+master-160.example.com
+[etcd]
+master-160.example.com
+[nodes]
+master-160.example.com
+node-161.example.com  openshift_schedulable=True  openshift_node_labels="{'region': 'infra', 'zone': 'default'}"
+node-162.example.com
+node-163.example.com
+node-164.example.com
+[glusterfs]
+node-162.example.com     glusterfs_ip=172.16.2.162   glusterfs_devices='[ "/dev/vda5" ]'
+node-163.example.com     glusterfs_ip=172.16.2.163   glusterfs_devices='[ "/dev/vda5" ]'
+node-164.example.com     glusterfs_ip=172.16.2.164   glusterfs_devices='[ "/dev/vda5" ]'
+```
+
+hostname -f
