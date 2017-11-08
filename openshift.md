@@ -573,7 +573,7 @@ gluster-claim   Bound     gluster-default-volume   2Gi        RWX               
 
 
 ## 持久化镜像仓库
-
+```
 oc project default
 
 oc get pod
@@ -594,7 +594,7 @@ deploymentconfigs/docker-registry
   secret/registry-certificates as registry-certificates
 
     mounted at /etc/secrets
-
+```
 
 
 查看当前挂载的本地目录使用大小情况
