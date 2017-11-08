@@ -812,7 +812,11 @@ kind: PersistentVolumeClaim
     name: ${DATABASE_SERVICE_NAME}
 ```
 
+```
+报错信息
 
+MountVolume.SetUp failed for volume "kubernetes.io/secret/d6499aa0-c452-11e7-972c-52540011feca-deployer-token-5z6gr" (spec.Name: "deployer-token-5z6gr") pod "d6499aa0-c452-11e7-972c-52540011feca" (UID: "d6499aa0-c452-11e7-972c-52540011feca") with: secret "test"/"deployer-token-5z6gr" not registered
+```
 
 #  在web console 使用持久存储  应用于 mysql
 
