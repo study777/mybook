@@ -505,9 +505,10 @@ subsets:
 
 
 创建pv
-```
-cat pv.yaml 
 
+
+cat pv.yaml 
+```
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -757,10 +758,44 @@ volumes:
 
 # 为 mysql 配置 持久存储
 
-创建一个pv
+
+使用mysql 持续存储模板创建应用
+```
+oc get pvc -o yaml
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    creationTimestamp: 2017-11-08T05:35:03Z
+    labels:
+      app: mysql-persistent
+      template: mysql-persistent-template
+    name: mysql
+    namespace: mysql
+    resourceVersion: "93187"
+    selfLink: /api/v1/namespaces/mysql/persistentvolumeclaims/mysql
+    uid: 92448c96-c446-11e7-972c-52540011feca
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 1Gi
+  status:
+    phase: Pending
+kind: List
+metadata: {}
+resourceVersion: ""
+selfLink: ""
+```
 
 
+报错信息
 
+```
+no persistent volumes available for this claim and no storage class is set
+```
 
 
 
