@@ -505,7 +505,7 @@ subsets:
 
 
 创建pv
-
+```
 cat pv.yaml 
 
 apiVersion: v1
@@ -522,11 +522,11 @@ spec:
     path: myVol1 
     readOnly: false
   persistentVolumeReclaimPolicy: Retain 
-
+```
 
 创建pvc
 
-
+```
 cat gluster-claim.yaml 
 
 apiVersion: v1
@@ -539,7 +539,7 @@ spec:
   resources:
      requests:
        storage: 1Gi 
-
+```
 
 
 
