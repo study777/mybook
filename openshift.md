@@ -841,6 +841,9 @@ deploymentconfigs/mysql
 oc rsh mysql-1-33nc1  'du' '-sh' '/var/lib/mysql/data'
 189M	/var/lib/mysql/data
 
+
+oc rsh mysql-1-33nc1  'df' '-h'
+
 ```
 
 登陆mysql  写入数据
