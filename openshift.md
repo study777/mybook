@@ -798,6 +798,21 @@ no persistent volumes available for this claim and no storage class is set
 ```
 
 
+修改  mysql-persistent
+
+oc edit template mysql-persistent -n openshift
+
+
+```
+kind: PersistentVolumeClaim
+  metadata:
+    annotations:
+      olume.beta.kubernetes.io/storage-provisioner: kubernetes.io/glusterfs
+      volume.beta.kubernetes.io/storage-class: glusterfs-storage
+    name: ${DATABASE_SERVICE_NAME}
+```
+
+
 
 #  在web console 使用持久存储  应用于 mysql
 
