@@ -506,8 +506,9 @@ subsets:
 
 创建pv
 
-cat pv.yaml 
 
+cat pv.yaml 
+```
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -522,11 +523,11 @@ spec:
     path: myVol1 
     readOnly: false
   persistentVolumeReclaimPolicy: Retain 
-
+```
 
 创建pvc
 
-
+```
 cat gluster-claim.yaml 
 
 apiVersion: v1
@@ -539,7 +540,7 @@ spec:
   resources:
      requests:
        storage: 1Gi 
-
+```
 
 
 
@@ -573,7 +574,7 @@ gluster-claim   Bound     gluster-default-volume   2Gi        RWX               
 
 
 ## 持久化镜像仓库
-
+```
 oc project default
 
 oc get pod
@@ -594,7 +595,7 @@ deploymentconfigs/docker-registry
   secret/registry-certificates as registry-certificates
 
     mounted at /etc/secrets
-
+```
 
 
 查看当前挂载的本地目录使用大小情况
@@ -757,10 +758,117 @@ volumes:
 
 # 为 mysql 配置 持久存储
 
-创建一个pv
+
+使用mysql 持续存储模板创建应用
+```
+oc get pvc -o yaml
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    creationTimestamp: 2017-11-08T05:35:03Z
+    labels:
+      app: mysql-persistent
+      template: mysql-persistent-template
+    name: mysql
+    namespace: mysql
+    resourceVersion: "93187"
+    selfLink: /api/v1/namespaces/mysql/persistentvolumeclaims/mysql
+    uid: 92448c96-c446-11e7-972c-52540011feca
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 1Gi
+  status:
+    phase: Pending
+kind: List
+metadata: {}
+resourceVersion: ""
+selfLink: ""
+```
+
+
+报错信息
+
+```
+no persistent volumes available for this claim and no storage class is set
+```
+
+
+修改  mysql-persistent
+
+oc edit template mysql-persistent -n openshift
+
+
+```
+kind: PersistentVolumeClaim
+  metadata:
+    annotations:
+      olume.beta.kubernetes.io/storage-provisioner: kubernetes.io/glusterfs
+      volume.beta.kubernetes.io/storage-class: glusterfs-storage
+    name: ${DATABASE_SERVICE_NAME}
+```
+
+```
+报错信息
+
+MountVolume.SetUp failed for volume "kubernetes.io/secret/d6499aa0-c452-11e7-972c-52540011feca-deployer-token-5z6gr" (spec.Name: "deployer-token-5z6gr") pod "d6499aa0-c452-11e7-972c-52540011feca" (UID: "d6499aa0-c452-11e7-972c-52540011feca") with: secret "test"/"deployer-token-5z6gr" not registered
+```
+
+```
+报错信息
+
+Readiness probe failed: sh: cannot set terminal process group (-1): Inappropriate ioctl for device sh: no job control in this shell ERROR 2003 (HY000): Can't connect to MySQL server on '127.0.0.1' (111) 
+```
+
+Username: root Password: root Database Name: sampledb Connection URL: mysql://mysql:3306/ 
+
+![install mysql glusterfs](Gluster-mysql.png)
+
+测试 mysql
+
+查看数据卷大小
+```
+oc volumes dc/mysql --all -n mysql-t
+deploymentconfigs/mysql
+  pvc/mysql (allocated 1GiB) as mysql-data
+    mounted at /var/lib/mysql/data
+    
+    
+oc rsh mysql-1-33nc1  'du' '-sh' '/var/lib/mysql/data'
+189M	/var/lib/mysql/data
+
+
+oc rsh mysql-1-33nc1  'df' '-h'
+
+```
+
+登陆mysql  写入数据
+```
+oc rsh  mysql-1-33nc1 
 
 
 
+mysql -uuser -h mysql.mysql-t.svc -puser
+
+
+show databases;
+
+use sampledb; 
+
+
+create table tutorials_tbl(
+   tutorial_id INT NOT NULL AUTO_INCREMENT,
+   tutorial_title VARCHAR(100) NOT NULL,
+   tutorial_author VARCHAR(40) NOT NULL,
+   submission_date DATE,
+   PRIMARY KEY ( tutorial_id )
+);
+
+```
 
 
 
