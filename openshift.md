@@ -1369,3 +1369,5 @@ nfs.disable: on
 
 
 http://note.youdao.com/share/?id=cf9b1b32f9e6b7c368b9edad5663f7ec&type=note#/
+
+https://blog.openshift.com/3-6-gluster-storage-containers/
