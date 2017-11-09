@@ -1219,7 +1219,15 @@ https://blog.openshift.com/container-native-storage-for-the-openshift-masses/
 
 自己试验内容
 
-oc replace | oc get pv -o yaml
+先看下库的内容
+
+MySQL [sampledb]> select * from sampledb.testtb;
++----+------+------+
+| id | name | age  |
++----+------+------+
+|  1 | aa   |   12 |
++----+------+------+
+
 
 oc edit pv pvc-c526a5d4-c45a-11e7-972c-52540011feca 
 
@@ -1227,7 +1235,19 @@ oc edit pv pvc-c526a5d4-c45a-11e7-972c-52540011feca
 
 
 capacity:
-    storage: 2Gi
+    storage: 5Gi
+
+
+
+oc replace | oc get pv -o yaml
+
+oc replace | oc get pv  pvc-c526a5d4-c45a-11e7-972c-52540011feca  -o yaml
+
+
+
+
+
+
 
 
     
