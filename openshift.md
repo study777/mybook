@@ -1289,6 +1289,8 @@ https://blog.openshift.com/container-native-storage-for-the-openshift-masses/
 heketi-cli volume expand --volume=0e8a8adc936cd40c2df3698b2f06bba9 --expand-size=2
     
 
+oc rsh heketi-storage-1-7h38q 
+
 
 
 
