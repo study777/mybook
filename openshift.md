@@ -1293,6 +1293,19 @@ oc rsh heketi-storage-1-7h38q
 
 
 
+heketi-cli volume  list
+Error: Unknown user
+
+
+
+后台报错
+[negroni] Started GET /volumes
+[negroni] Completed 401 Unauthorized in 128.042µs
+
+
+
+
+
 
 
 
