@@ -873,8 +873,8 @@ create table tutorials_tbl(
 
 ```
 
-制作一个镜像 用于mysql的客户端 以便测试 mysql 服务器
-
+#### 制作一个镜像 用于mysql的客户端 以便测试 mysql 服务器
+```
 设置使docker 容器可以连接外部网络
 
 echo "net.ipv4.ip_forward=1" >> /etc/sysctl.conf
@@ -921,7 +921,8 @@ oc rsh  mytest-1-pxcmd
 mysql -uroot -h mysql.mysql-t.svc -proot
 
 
-
+show databases;
+```
 
 
 
