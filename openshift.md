@@ -1304,8 +1304,65 @@ Error: Unknown user
 
 
 
+http://redhatstorage.redhat.com/
+
+### 登录一个glusterfs node 
+```
+oc rsh glusterfs-storage-249pb
+
+gluster volume list
+heketidbstorage
+vol_90c0d59eeffb2dac420fe630334fcac1
 
 
+gluster volume info
+ 
+Volume Name: heketidbstorage
+Type: Replicate
+Volume ID: 7948e5d8-9681-4c4e-b653-f76e94255264
+Status: Started
+Snapshot Count: 0
+Number of Bricks: 1 x 3 = 3
+Transport-type: tcp
+Bricks:
+Brick1: 172.16.2.164:/var/lib/heketi/mounts/vg_538ad1b922315855356110956015a128/brick_a36eb4501204d67e8ce0cf9df5241d98/brick
+Brick2: 172.16.2.163:/var/lib/heketi/mounts/vg_43ca2753e822fa045739ad774c5ca8da/brick_1e70cec7cda84a9a4c4531ec3bc37214/brick
+Brick3: 172.16.2.162:/var/lib/heketi/mounts/vg_bca58b5f894155d2a4a30f9811943f53/brick_14f7ccd5fab6bceec987bdf4665bd570/brick
+Options Reconfigured:
+transport.address-family: inet
+nfs.disable: on
+ 
+Volume Name: vol_90c0d59eeffb2dac420fe630334fcac1
+Type: Replicate
+Volume ID: b02f0f62-e794-4995-9d06-3445cab846d9
+Status: Started
+Snapshot Count: 0
+Number of Bricks: 1 x 3 = 3
+Transport-type: tcp
+Bricks:
+Brick1: 172.16.2.164:/var/lib/heketi/mounts/vg_538ad1b922315855356110956015a128/brick_0f3068b010dd897d1ec922fa89997faa/brick
+Brick2: 172.16.2.163:/var/lib/heketi/mounts/vg_43ca2753e822fa045739ad774c5ca8da/brick_78f76ad4ec9611333613a71b352bfaf7/brick
+Brick3: 172.16.2.162:/var/lib/heketi/mounts/vg_bca58b5f894155d2a4a30f9811943f53/brick_c1e5c24ca347c954eb304d63c1c4c0c3/brick
+Options Reconfigured:
+transport.address-family: inet
+nfs.disable: on
 
-
-
+```
+```
+gluster volume  info vol_90c0d59eeffb2dac420fe630334fcac1
+ 
+Volume Name: vol_90c0d59eeffb2dac420fe630334fcac1
+Type: Replicate
+Volume ID: b02f0f62-e794-4995-9d06-3445cab846d9
+Status: Started
+Snapshot Count: 0
+Number of Bricks: 1 x 3 = 3
+Transport-type: tcp
+Bricks:
+Brick1: 172.16.2.164:/var/lib/heketi/mounts/vg_538ad1b922315855356110956015a128/brick_0f3068b010dd897d1ec922fa89997faa/brick
+Brick2: 172.16.2.163:/var/lib/heketi/mounts/vg_43ca2753e822fa045739ad774c5ca8da/brick_78f76ad4ec9611333613a71b352bfaf7/brick
+Brick3: 172.16.2.162:/var/lib/heketi/mounts/vg_bca58b5f894155d2a4a30f9811943f53/brick_c1e5c24ca347c954eb304d63c1c4c0c3/brick
+Options Reconfigured:
+transport.address-family: inet
+nfs.disable: on
+```
