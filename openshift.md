@@ -925,7 +925,29 @@ show databases;
 ```
 
 
+#### 测试删除mysql  pod 数据是否都在
 
+```
+oc delete pod mysql-1-33nc1
+
+之后会自动生成一个pod
+oc get pod | grep mysql
+mysql-1-klvk3         1/1       Running   0          33s
+
+在上一步的 客户端容器内查看
+
+oc project test-mysql
+
+oc rsh  mytest-1-pxcmd 
+
+mysql -uroot -h mysql.mysql-t.svc -proot
+
+show databases;
+
+数据都在
+
+
+```
 
 #  在web console 使用持久存储  应用于 mysql
 
