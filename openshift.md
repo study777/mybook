@@ -1204,3 +1204,36 @@ node-164.example.com     glusterfs_ip=172.16.2.164   glusterfs_devices='[ "/dev/
 ```
 
 hostname -f
+
+
+
+
+
+
+### 动态扩容卷
+
+文档链接
+
+https://blog.openshift.com/container-native-storage-for-the-openshift-masses/
+
+
+自己试验内容
+
+oc replace | oc get pv -o yaml
+
+oc edit pv pvc-c526a5d4-c45a-11e7-972c-52540011feca 
+
+更改大小
+
+
+capacity:
+    storage: 2Gi
+
+
+    
+
+
+
+
+
+
