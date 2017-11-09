@@ -851,9 +851,12 @@ oc rsh mysql-1-33nc1  'df' '-h'
 oc rsh  mysql-1-33nc1 
 
 
-
+普通用户登录
 mysql -uuser -h mysql.mysql-t.svc -puser
 
+root  用户登录
+
+mysql -uroot -h mysql.mysql-t.svc -proot
 
 show databases;
 
