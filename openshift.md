@@ -873,6 +873,57 @@ create table tutorials_tbl(
 
 ```
 
+制作一个镜像 用于mysql的客户端 以便测试 mysql 服务器
+
+设置使docker 容器可以连接外部网络
+
+echo "net.ipv4.ip_forward=1" >> /etc/sysctl.conf
+
+sysctl  -p
+
+
+mkdir test
+
+cd test
+
+cat Dockerfile 
+FROM docker.io/centos:latest
+
+RUN touch /tmp/test && \
+
+yum -y install mysql
+
+CMD tail -f /tmp/test
+
+
+Docker build -t mytest .
+
+为新镜像打上标签 并推送至私有registry
+
+docker tag mytest 172.16.2.31:5000/mytest:latest
+
+docker push 172.16.2.31:5000/mytest:latest
+
+openshift  master 将镜像 导入 为 is
+
+
+oc import-image  172.16.2.31:5000/mytest:latest   -n openshift --confirm --insecure
+
+
+
+web console  部署 这个 is
+
+进入容器内部 测试连接 mysql 服务器
+
+oc rsh  mytest-1-pxcmd 
+
+
+mysql -uroot -h mysql.mysql-t.svc -proot
+
+
+
+
+
 
 
 #  在web console 使用持久存储  应用于 mysql
