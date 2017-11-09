@@ -1212,9 +1212,7 @@ hostname -f
 
 ### 动态扩容卷
 
-文档链接
 
-https://blog.openshift.com/container-native-storage-for-the-openshift-masses/
 
 
 自己试验内容
@@ -1244,12 +1242,51 @@ oc replace | oc get pv -o yaml
 oc replace | oc get pv  pvc-c526a5d4-c45a-11e7-972c-52540011feca  -o yaml
 
 
+再次查库 最好重新登录
+
+MySQL [sampledb]> select * from sampledb.testtb;
++----+------+------+
+| id | name | age  |
++----+------+------+
+|  1 | aa   |   12 |
++----+------+------+
 
 
 
 
 
 
+查看 mysql 容器 挂载卷的大小
+
+oc rsh mysql-1-33nc1  'df' '-h'
+
+
+oc rsh  mysql-1-klvk3   'df' '-h'
+Filesystem                                                                                          Size  Used Avail Use% Mounted on
+/dev/mapper/docker-253:0-67836054-dc018f37f49bffbbef322d837921b152ddb2452c68ead0cd37784842b1f59752   10G  437M  9.6G   5% /
+tmpfs                                                                                               3.9G     0  3.9G   0% /dev
+tmpfs                                                                                               3.9G     0  3.9G   0% /sys/fs/cgroup
+/dev/mapper/cl-root                                                                                  50G  8.3G   42G  17% /etc/hosts
+shm                                                                                                  64M     0   64M   0% /dev/shm
+172.16.2.162:vol_90c0d59eeffb2dac420fe630334fcac1                                                  1016M  223M  793M  22% /var/lib/mysql/data
+tmpfs                                                                                               3.9G   16K  3.9G   1% /run/secrets/kubernetes.io/serviceaccount
+
+
+
+
+
+显示还是1G
+
+
+存储后台   需要扩容 
+
+文档链接
+
+https://blog.openshift.com/container-native-storage-for-the-openshift-masses/
+
+172.16.2.162:vol_90c0d59eeffb2dac420fe630334fcac1 
+
+heketi-cli volume expand --volume=0e8a8adc936cd40c2df3698b2f06bba9 --expand-size=2
     
 
 
