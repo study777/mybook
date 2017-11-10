@@ -135,6 +135,7 @@ FROM docker.io/centos
 MAINTAINER huliaoliao
 # TODO: Rename the builder environment variable to inform users about application you provide them
 ENV BUILDER_VERSION 1.0
+ENV LC_CTYPE en_US.UTF-8
 # TODO: Set labels used in OpenShift to describe the builder image
 LABEL io.openshift.s2i.scripts-url=image:///usr/libexec/s2i \
       io.k8s.description="Platform for building tomcat" \
