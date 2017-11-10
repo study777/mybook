@@ -1387,7 +1387,7 @@ openshift_release=3.6.0
 openshift_master_default_subdomain=pass.com
 openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider', 'filename': '/etc/origin/master/htpasswd'}]
 openshift_disable_check=memory_availability,disk_availability,docker_storage
-oreg_url=devocr.pass.com/openshift/origin-${component}:${version}
+oreg_url=registry.example.com/openshift/origin-${component}:${version}
 openshift_examples_modify_imagestreams=true
 openshift_docker_additional_registries=registry.example.com
 [masters]
