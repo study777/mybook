@@ -1,4 +1,4 @@
-``` go
+```golang
 package main
 
 import (
