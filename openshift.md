@@ -1212,7 +1212,7 @@ hostname -f
 
 ### 动态扩容卷
 
-
+```
 
 
 自己试验内容
@@ -1305,6 +1305,7 @@ Error: Unknown user
 
 
 http://redhatstorage.redhat.com/
+```
 
 ### 登录一个glusterfs node 
 ```
