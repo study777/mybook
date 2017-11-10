@@ -1212,8 +1212,8 @@ hostname -f
 
 ### 动态扩容卷
 
-```
 
+```
 
 自己试验内容
 
@@ -1278,7 +1278,7 @@ tmpfs                                                                           
 显示还是1G
 
 
-存储后台   需要扩容 
+存储后台  要扩容 
 
 文档链接
 
@@ -1372,3 +1372,30 @@ nfs.disable: on
 http://note.youdao.com/share/?id=cf9b1b32f9e6b7c368b9edad5663f7ec&type=note#/
 
 https://blog.openshift.com/3-6-gluster-storage-containers/
+
+
+### success hosts-v1
+```
+[OSEv3:children]
+masters
+nodes
+etcd
+[OSEv3:vars]
+ansible_ssh_user=root
+openshift_deployment_type=origin
+openshift_release=3.6.0
+openshift_master_default_subdomain=pass.com
+openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider', 'filename': '/etc/origin/master/htpasswd'}]
+openshift_disable_check=memory_availability,disk_availability,docker_storage
+oreg_url=devocr.pass.com/openshift/origin-${component}:${version}
+openshift_examples_modify_imagestreams=true
+openshift_docker_additional_registries=registry.example.com
+[masters]
+master01.pass.com
+[etcd]
+master01.pass.com
+[nodes]
+master01.pass.com
+node01.pass.com openshift_node_labels="{'region': 'infra', 'zone': 'default'}"
+node02.pass.com openshift_node_labels="{'region': 'primary', 'zone': 'east'}"
+```
