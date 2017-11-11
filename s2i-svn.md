@@ -597,3 +597,26 @@ admin
 admin
 
 
+
+
+
+
+
+
+## SUV  TEST 1
+
+svnadmin create /var/www/svn/supp
+
+chown -R apache:apache /var/www/svn/supp/
+
+
+cat /opt/supp/src/main/resources/jdbc.properties 
+jdbc.driverClassName=com.mysql.cj.jdbc.Driver
+jdbc.url=jdbc:mysql://mysql.suppmysql.svc:3306/shengxian?useSSL=false&serverTimezone=UTC
+jdbc.username=shengxian
+jdbc.password=shengxian2
+
+
+svn import -m "First SVN Repo"  /opt/supp   http://172.16.2.30/svn/supp
+
+
