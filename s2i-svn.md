@@ -619,4 +619,4 @@ jdbc.password=shengxian2
 
 svn import -m "First SVN Repo"  /opt/supp   http://172.16.2.30/svn/supp
 
-
+http://172.16.2.30/svn/spring-hello-world
