@@ -135,6 +135,7 @@ FROM docker.io/centos
 MAINTAINER huliaoliao
 # TODO: Rename the builder environment variable to inform users about application you provide them
 ENV BUILDER_VERSION 1.0
+ENV LC_CTYPE en_US.UTF-8
 # TODO: Set labels used in OpenShift to describe the builder image
 LABEL io.openshift.s2i.scripts-url=image:///usr/libexec/s2i \
       io.k8s.description="Platform for building tomcat" \
@@ -596,3 +597,26 @@ admin
 admin
 
 
+
+
+
+
+
+
+## SUV  TEST 1
+
+svnadmin create /var/www/svn/supp
+
+chown -R apache:apache /var/www/svn/supp/
+
+
+cat /opt/supp/src/main/resources/jdbc.properties 
+jdbc.driverClassName=com.mysql.cj.jdbc.Driver
+jdbc.url=jdbc:mysql://mysql.suppmysql.svc:3306/shengxian?useSSL=false&serverTimezone=UTC
+jdbc.username=shengxian
+jdbc.password=shengxian2
+
+
+svn import -m "First SVN Repo"  /opt/supp   http://172.16.2.30/svn/supp
+
+http://172.16.2.30/svn/spring-hello-world
