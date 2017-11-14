@@ -121,37 +121,37 @@ some output
 
 
 
+# config pod  success
 
-
-\`\`\`
-
+```
 docker pull docker.io/centos/mysql-57-centos7
 
-oc new-project  test-mysql
+oc new-project  test-mysql-0
+
+oc policy add-role-to-user admin dev -n  test-mysql-0
 
 oc project test-mysql-0
 
-
-
 oc new-app -e MYSQL\_USER=yandun -e MYSQL\_PASSWORD=yandun -e MYSQL\_DATABASE=yandun -e MYSQL\_LOWER\_CASE\_TABLE\_NAMES=1 docker.io/centos/mysql-57-centos7
 
-
-
-
-
-oc new-app  -e MYSQL\_USER=yandun  -e MYSQL\_PASSWORD=yandun   -e MYSQL\_DATABASE=yandun   docker.io/centos/mysql-57-centos7
-
-oc policy add-role-to-user admin dev -n  test-mysql-0
 
 oc rsh  mysql-57-centos7-1-92rw3
 
 mysql -u $MYSQL\_USER -p$MYSQL\_PASSWORD -h $HOSTNAME $MYSQL\_DATABASE
 
-
-
 show variables like "%case%";
+mysql> show variables like "%case%";
++------------------------+-------+
+| Variable_name          | Value |
++------------------------+-------+
+| lower_case_file_system | OFF   |
+| lower_case_table_names | 1     |
++------------------------+-------+
+2 rows in set (0.01 sec)
 
-\`\`\`
+```
+
+
 
 
 
