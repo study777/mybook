@@ -82,3 +82,38 @@ echo "MYSQL_PREFIX=/opt/rh/rh-mysql57/root/usr"   >> /etc/profile
 echo  "ENABLED_COLLECTIONS=rh-mysql57"   >> /etc/profile
 
 
+
+
+
+
+
+```
+RUN /usr/libexec/container-setup
+
+scl enable rh-mysql57  -- my_print_defaults --help --verbose  | grep --after=1 '^Default options' | tail -n 1  | grep -o '[^ ]*opt[^ ]*my.cnf'
+
+
+
+
+```
+
+
+
+COPY 5.7/root /
+
+
+
+scp /opt/mysql-container/5.7/root/usr/share/container-scripts/mysql/README.md   172.16.2.32:/usr/share/container-scripts/mysql/
+
+
+
+
+
+
+
+
+
+
+
+
+
