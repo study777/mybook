@@ -119,8 +119,6 @@ some output
     make[1]: Leaving directory `/opt/mysql-container'
     You have new mail in /var/spool/mail/root
 
-
-
 # config pod  success
 
 ```
@@ -148,10 +146,7 @@ mysql> show variables like "%case%";
 | lower_case_table_names | 1     |
 +------------------------+-------+
 2 rows in set (0.01 sec)
-
 ```
-
-
 
 # 进一步测试在template 中 设置固定的值
 
@@ -177,13 +172,10 @@ mysql> show variables like "%case%";
 | lower_case_table_names | 1     |
 +------------------------+-------+
 2 rows in set (0.01 sec)
-
 ```
 
-
-
-
 # 在模板中设置为可填值
+
 ```
 oc edit template mysql-persistent  -n openshift
 
@@ -195,8 +187,8 @@ containers:
         - env:
           - name: MYSQL_LOWER_CASE_TABLE_NAMES
             value: ${MYSQL_LOWER_CASE_TABLE_NAMES}
-            
-            
+
+
 
 web console 显示出添加
 
@@ -205,29 +197,8 @@ web console 显示出添加
   from: user[0-1]{3}
   generate: expression
   name: MYSQL_LOWER_CASE_TABLE_NAMES
-  required: true                        
-                                                                        
-
-
-
+  required: true
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
