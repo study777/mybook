@@ -41,6 +41,10 @@ PROMPT_COMMAND=". ${CONTAINER_SCRIPTS_PATH}/scl_enable"
 
 
 
+scp /opt/mysql-container/5.7/root-common/etc/my.cnf    172.16.2.32:/etc/
+
+
+
 
 scp 
 
