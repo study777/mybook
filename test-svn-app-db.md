@@ -34,17 +34,19 @@ oc project supp-data
 
 
 
-
+chmod +x  /root/shengxian.sql
 
 oc cp /root/shengxian.sql mysql-1-jfls6:/tmp/
 
 
 
-mysql -ushengxian  -hmysql.supp-data.svc  -pshengxian2
+oc rsh mysql-1-jfls6 
+
+mysql -u $MYSQL_USER -p$MYSQL_PASSWORD -h $HOSTNAME $MYSQL_DATABASE
 
 use shengxian;
 
-
+source /tmp/shengxian.sql
 
 
 
