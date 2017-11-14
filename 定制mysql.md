@@ -183,9 +183,34 @@ mysql> show variables like "%case%";
 
 
 
-# 在模板中设置为可选的值
+# 在模板中设置为可填值
+```
+oc edit template mysql-persistent  -n openshift
+
+更改两处位置
+
+容器的环境变量处添加
+
+containers:
+        - env:
+          - name: MYSQL_LOWER_CASE_TABLE_NAMES
+            value: ${MYSQL_LOWER_CASE_TABLE_NAMES}
+            
+            
+
+web console 显示出添加
+
+- description: Set MYSQL_LOWER_CASE_TABLE_NAMES.
+  displayName: Set MYSQL_LOWER_CASE_TABLE_NAMES
+  from: user[0-1]{3}
+  generate: expression
+  name: MYSQL_LOWER_CASE_TABLE_NAMES
+  required: true                        
+                                                                        
 
 
+
+```
 
 
 
