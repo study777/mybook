@@ -183,6 +183,7 @@ mysql> show variables like "%case%";
 
 
 
+# 在模板中设置为可选的值
 
 
 
