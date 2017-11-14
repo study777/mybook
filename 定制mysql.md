@@ -119,15 +119,29 @@ some output
     make[1]: Leaving directory `/opt/mysql-container'
     You have new mail in /var/spool/mail/root
 
+
+
+docker pull docker.io/centos/mysql-57-centos7
+
+
+
+
+
 oc new-project  test-mysql
 
 oc project test-mysql-0
 
 oc new-app  -e MYSQL\_USER=yandun  -e MYSQL\_PASSWORD=yandun   -e MYSQL\_DATABASE=yandun   docker.io/centos/mysql-57-centos7
 
-
-
 oc policy add-role-to-user admin dev -n  test-mysql-0
+
+
+
+oc rsh  mysql-57-centos7-1-92rw3
+
+
+
+mysql -u $MYSQL\_USER -p$MYSQL\_PASSWORD -h $HOSTNAME $MYSQL\_DATABASE
 
 
 
