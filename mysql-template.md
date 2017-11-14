@@ -18,9 +18,7 @@ yum -y install rsync tar gettext hostname bind-utils groff-base shadow-utils rh-
 
 
 
-mkdir  -p /usr/share/container-scripts/mysql
 
-cd  /opt/mysql-container/5.7/root-common/usr/share/container-scripts/mysql
 
 
 CONTAINER_SCRIPTS_PATH=/usr/share/container-scripts/mysql
@@ -42,6 +40,33 @@ PROMPT_COMMAND=". ${CONTAINER_SCRIPTS_PATH}/scl_enable"
 
 
 scp /opt/mysql-container/5.7/root-common/etc/my.cnf    172.16.2.32:/etc/
+
+
+scp /opt/mysql-container/5.7/root-common/usr/bin/*     172.16.2.32:/usr/bin/
+
+
+scp /opt/mysql-container/5.7/root-common/usr/libexec/*       172.16.2.32:/usr/libexec/
+
+
+
+mkdir  -p /usr/share/container-scripts/mysql
+
+cd  /opt/mysql-container/5.7/root-common/usr/share/container-scripts/mysql
+
+
+scp -r /opt/mysql-container/5.7/root-common/usr/share/container-scripts/mysql/*     172.16.2.32:/usr/share/container-scripts/mysql
+
+
+
+
+
+
+mkdir /usr/libexec/s2i
+scp /opt/mysql-container/5.7/s2i-common/bin/*    172.16.2.32:/usr/libexec/s2i
+cd /usr/libexec/s2i/
+ln -s /bin/run-mysqld ./run
+
+
 
 
 
