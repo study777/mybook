@@ -153,6 +153,40 @@ mysql> show variables like "%case%";
 
 
 
+# 进一步测试在template 中 设置固定的值
+
+```
+oc edit  template mysql-persistent  -n openshift
+
+spec:
+        containers:
+        - env:
+          - name: MYSQL_LOWER_CASE_TABLE_NAMES
+            value: "1"
+
+oc rsh mysql-1-l319r
+
+mysql -u $MYSQL_USER -p$MYSQL_PASSWORD -h $HOSTNAME $MYSQL_DATABASE
+
+
+mysql> show variables like "%case%";
++------------------------+-------+
+| Variable_name          | Value |
++------------------------+-------+
+| lower_case_file_system | OFF   |
+| lower_case_table_names | 1     |
++------------------------+-------+
+2 rows in set (0.01 sec)
+
+```
+
+
+
+
+
+
+
+
 
 
 
