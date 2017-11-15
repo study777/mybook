@@ -39,6 +39,12 @@ chmod +x  /root/shengxian.sql
 oc cp /root/shengxian.sql mysql-1-jfls6:/tmp/
 
 
+登陆数据库方式1
+
+mysql -ushengxian -hmysql.supp-data.svc -pshengxian2
+
+
+登陆数据库方式2
 
 oc rsh mysql-1-jfls6 
 
@@ -50,8 +56,21 @@ source /tmp/shengxian.sql
 
 
 
+docker tag 3fa21aeffbbb  172.16.2.31:5000/supp:latest
+docker push 172.16.2.31:5000/supp:latest
 
 
+openshift master 
+
+oc import-image  172.16.2.31:5000/supp:latest  -n openshift --confirm --insecure
+
+vim /etc/sysconfig/docker
+
+--insecure-registry 172.16.2.31:5000
+
+
+
+docker pull 172.16.2.31:5000/supp:latest
 
 
 
