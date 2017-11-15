@@ -14,17 +14,6 @@ Password for 'wangzhichao':   输入密码
 
 cd supp/
 
-cat /supp/src/main/resources/jdbc.properties
-
-jdbc.driverClassName=com.mysql.cj.jdbc.Driver
-
-jdbc.url=jdbc:mysql://139.129.226.254:3306/shengxian?useSSL=false&serverTimezone=UTC
-
-jdbc.username=shengxian
-
-jdbc.password=shengxian2
-
-mysqldump  -ushengxian -h139.129.226.254 shengxian -pshengxian2  &gt; shengxian.sql
 
 
 
