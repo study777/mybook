@@ -79,7 +79,11 @@ docker pull 172.16.2.31:5000/supp:latest
 
 
 
+oc rsh supp-app-1-bqtpc
 
+curl  localhost:8080/login
+
+有输出
 
 
 
