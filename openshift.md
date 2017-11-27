@@ -144,6 +144,7 @@ sed -i '/OPTIONS=.\*/c\OPTIONS="--selinux-enabled --insecure-registry 172.30.0.0
 
 设置docker  存储
 
+事先创建VG
 fdisk  /dev/vda
 
 ```
@@ -183,6 +184,47 @@ docker-storage-setup
 systemctl  start docker
 
 systemctl  enable docker
+
+直接使用裸设备
+systemctl  stop docker
+
+rm -rf /var/lib/docker/*
+
+
+cat /etc/sysconfig/docker-storage-setup 
+DEVS=/dev/sdb
+VG=docker-vg
+SETUP_LVM_THIN_POOL=yes
+
+
+
+lvmconf --disable-cluster
+
+docker-storage-setup
+
+systemctl  start docker
+
+
+
+docker info
+
+
+Storage Driver: devicemapper
+ Pool Name: docker--vg-docker--pool
+ Pool Blocksize: 524.3 kB
+ Base Device Size: 10.74 GB
+ Backing Filesystem: xfs
+ Data file: 
+ Metadata file: 
+ Data Space Used: 20.45 MB
+ Data Space Total: 8.535 GB
+ Data Space Available: 8.515 GB
+ Metadata Space Used: 40.96 kB
+ Metadata Space Total: 25.17 MB
+ Metadata Space Available: 25.12 MB
+ Thin Pool Minimum Free Space: 853.5 MB
+
+
 
 # 为glusterfs 配置存储块设备
 
