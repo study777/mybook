@@ -1,1 +1,1 @@
-- [openshift](openshift.md)
+* [openshift](openshift.md)
