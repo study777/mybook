@@ -279,7 +279,7 @@ partprobe
 ```
 cd /root
 
-git clone  https://github.com/openshift/openshift-ansible.git
+wget https://github.com/openshift/openshift-ansible/archive/release-3.6.zip
 
 >  /root/openshift-ansible-release-3.6/roles/openshift_repos/files/origin/repos/openshift-ansible-centos-paas-sig.repo
 ```
