@@ -32,6 +32,7 @@ iptables -t nat -F
 
  
 echo "net.ipv4.ip_forward=1" >> /etc/sysctl.conf
+
 sysctl -p
 
 iptables -A FORWARD -s 9.9.9.0/24 -j ACCEPT
