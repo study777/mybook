@@ -40,5 +40,16 @@ iptables -A FORWARD -s 9.9.9.0/24 -j ACCEPT
 iptables -t nat -A POSTROUTING -s 9.9.9.0/24 -j SNAT --to  172.16.101.1
 
 
+### dnat
 
+iptables -t nat -A PREROUTING -d 172.16.101.249 -p tcp -m tcp --dport 3301 -j DNAT --to-destination 182.16.10.12:3306
+
+
+iptables -t nat -A POSTROUTING -d 182.16.10.12  -p tcp  -m tcp --dport 3306 -j SNAT --to-source 182.16.10.11
+
+
+iptables -A FORWARD -o eth0 -d 182.16.10.12  -p tcp --dport 3306 -j ACCEPT
+
+
+iptables -A FORWARD -i eth0  -s 182.16.10.12 -p tcp --sport 3306 -j ACCEPT
 
