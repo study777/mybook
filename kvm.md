@@ -15,3 +15,8 @@ qemu-img create -f qcow2  /local_kvm/test.qcow2  80G
 
 
 virt-install --virt-type kvm --name CentOS-7-x86_64 --ram 2048 --cdrom=/local_kvm/CentOS-7-x86_64-DVD-1611.iso  --disk path=/local_kvm/test.qcow2  --network network=br0  --graphics vnc,keymap=en-us,listen=0.0.0.0
+
+
+example1
+
+virt-install --virt-type kvm --name CentOS-7-x86_64 --ram 2048 --cdrom=/home/kvm/iso/CentOS-6.5-x86_64-bin-DVD1.iso  --disk path=/home/kvm/image/test.qcow2  --network network=br0 --graphics vnc,keymap=en-us,port=5901,listen=0.0.0.0
