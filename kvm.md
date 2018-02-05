@@ -9,6 +9,8 @@ virt-install --virt-type kvm  --arch=x86_64 --name win2008r2 --ram  8192 --vcpus
 
 success
 
+export LANG=en_US.UTF-8
+
 qemu-img create -f qcow2  /local_kvm/test.qcow2  80G
 
 
