@@ -30,4 +30,6 @@ virt-install --virt-type kvm --hvm --name 10.10.10.167  --ram 4096 --vcpus=4 --o
 
 直接从装好系统的磁盘引导，跳过系统安装
 
+ cp centos6.4-80G.qcow2  test.qcow2
+
  virt-install --virt-type kvm --hvm --name test --ram 4096 --vcpus=4 --os-type=linux   --import    --disk path=/kvm/image/test.qcow2,bus=virtio --network network=br0 --graphics vnc,keymap=en-us,port=5901,listen=0.0.0.0 --accelerate
