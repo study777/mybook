@@ -37,5 +37,7 @@ virt-install --virt-type kvm --hvm --name 10.10.10.167  --ram 4096 --vcpus=4 --o
 
 
 拷贝本地文件到磁盘镜像
+
 cp centos6.4-80G.qcow2  test1.qcow2
+
 virt-copy-in  -a test1.qcow2    /tmp/test  /tmp/
