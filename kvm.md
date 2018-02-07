@@ -33,3 +33,9 @@ virt-install --virt-type kvm --hvm --name 10.10.10.167  --ram 4096 --vcpus=4 --o
  cp centos6.4-80G.qcow2  test.qcow2
 
  virt-install --virt-type kvm --hvm --name test --ram 4096 --vcpus=4 --os-type=linux   --import    --disk path=/kvm/image/test.qcow2,bus=virtio --network network=br0 --graphics vnc,keymap=en-us,port=5901,listen=0.0.0.0 --accelerate
+
+
+
+拷贝本地文件到磁盘镜像
+cp centos6.4-80G.qcow2  test1.qcow2
+virt-copy-in  -a test1.qcow2    /tmp/test  /tmp/
