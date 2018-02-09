@@ -42,6 +42,8 @@ iptables -t nat -A POSTROUTING -s 9.9.9.0/24 -j SNAT --to  172.16.101.1
 
 ### dnat
 
+iptables -t nat  -F
+
 iptables -t nat -A PREROUTING -d 172.16.101.249 -p tcp -m tcp --dport 3301 -j DNAT --to-destination 182.16.10.12:3306
 
 
