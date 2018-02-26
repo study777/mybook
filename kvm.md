@@ -49,3 +49,10 @@ cp centos6.4-80G.qcow2  test2.qcow2
 virt-copy-in -a  /kvm/image/test2.qcow2 /tmp/ifcfg-eth0   /etc/sysconfig/network-scripts/
 
 virt-install --virt-type kvm --hvm --name test2 --ram 4096 --vcpus=4 --os-type=linux --import --disk path=/kvm/image/test2.qcow2,bus=virtio --network network=br0 --graphics vnc,keymap=en-us,port=5903,listen=0.0.0.0 --accelerate
+
+
+
+ 
+基于 glusterfs 存在的 img 创建虚拟机
+
+virt-install --virt-type kvm --hvm --name test --ram 4096 --vcpus=4 --os-type=linux --import --disk vol=glusterfs-pool/test.qcow2,bus=virtio --network network=br0 --graphics vnc,keymap=en-us,port=5901,listen=0.0.0.0 --accelerate
